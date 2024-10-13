@@ -2,9 +2,11 @@
 import React, { useEffect } from "react";
 import { useStore } from "../../store/store";
 import Image from "next/image";
+import Link from "next/link";
 
 const page = () => {
   const { data, fetchData, isLoading, loginUser } = useStore();
+
   useEffect(() => {
     fetchData();
   }, [fetchData]);
@@ -20,31 +22,34 @@ const page = () => {
 
   const RenderData = () => {
     return (
-      <div>
+      <>
         {data.map((item: any) => (
-          <div>
-            <p>{item.title}</p>
-            <Image
-              src={item.image}
-              width={150}
-              height={150}
-              alt="product image"
-            />
-            <p>{item.price}$</p>
-          </div>
+          <Link
+            href={{
+              pathname: "/details",
+              query: {...item},
+            }}
+            key={item.id}
+          >
+            <div className="itemContainer">
+              <p>{item.title}</p>
+              <Image
+                src={item.image}
+                width={150}
+                height={150}
+                alt="product image"
+              />
+              <p>{item.price}$</p>
+            </div>
+          </Link>
         ))}
-      </div>
+      </>
     );
   };
 
   const Signin = () => {
-
-    return (
-      <div>
-
-      </div>
-    )
-  }
+    return <div></div>;
+  };
 
   return (
     <>

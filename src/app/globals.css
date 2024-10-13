@@ -8,3 +8,6 @@ body {
 .loadingTxt {
   font-size: 50px;
 }
+.itemContainer {
+  border: 1px solid #000;
+}
