@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
+import { useStore } from "../../../store/store";
 
 interface SearchParams {
   id: string;
@@ -10,6 +11,7 @@ interface SearchParams {
   description: string;
   category: string;
   image: string;
+  rating: string;
 }
 
 interface DetailsPageProps {
@@ -17,7 +19,9 @@ interface DetailsPageProps {
 }
 
 const DetailsPage: React.FC<DetailsPageProps> = ({ searchParams }) => {
-  console.log(searchParams);
+  const { addToCart, cartList } = useStore();
+  console.log(cartList);
+  
 
   return (
     <>
@@ -30,7 +34,14 @@ const DetailsPage: React.FC<DetailsPageProps> = ({ searchParams }) => {
       <p>{searchParams.title}</p>
       <p>{searchParams.description}</p>
       <p>{searchParams.price}$</p>
-      
+      <button
+        onClick={() => {
+          addToCart(searchParams);
+        }}
+        className="addToCartBtn"
+      >
+        Add To Cart
+      </button>
     </>
   );
 };

@@ -11,3 +11,6 @@ body {
 .itemContainer {
   border: 1px solid #000;
 }
+.addToCartBtn {
+  padding: 20px;
+}
